@@ -21,7 +21,7 @@ Decidi utilizar uma abordagem diferente para demostrar a solução. Utilizei da 
 clone o projeto.
 
 ```bash
-git clone https://github.com/Miguel-sdj/defunct-makefile.git
+git clone https://github.com/Miguel-sdj/defunct-makefile.git && cd defunct-makefile
 ```
 
 ## Usage
