@@ -6,50 +6,51 @@
 
 void* printar_ps()
 {
-        int timer;
-        printf("Esperando 10 segundos\n");
-        for(timer = 5; timer > 0; timer--){
-                
-                printf("Tempo restante = %d\n", timer*2);
-                printf("----------------------------/----------------------------/----------------------------\n");
-                system("ps -l |grep 'Z'");
-                printf("----------------------------/----------------------------/----------------------------\n");
-                sleep(2);
-                printf("\n\n");
+	int timer;
 
-        }
-        
-        return 0;
+	printf("Esperando 10 segundos\n");
+	for (timer = 5; timer > 0; timer--) {
+
+		printf("Tempo restante = %d\n", timer*2);
+		printf("----------------------------/----------------------------/----------------------------\n");
+		system("ps -l |grep 'Z'");
+		printf("----------------------------/----------------------------/----------------------------\n");
+		sleep(2);
+		printf("\n\n");
+
+	}
+
+	return 0;
 }
 
 void* zombie_maker()
 {
-        pid_t p;
-        p = fork();
+	pid_t p;
 
-        if(p == 0){
-                printf("\n\n\nPID DO DEFUNTO =  %d\n", getpid());
-                printf("PID DO PAI = %d\n\n\n", getppid());
+	p = fork();
 
-        }
-        else{
-                sleep(10);
-                printf("\n\nPID %d foi comprovado zumbi\n", p);
-        }
+	if (p == 0) {
+		printf("\n\n\nPID DO DEFUNTO =  %d\n", getpid());
+		printf("PID DO PAI = %d\n\n\n", getppid());
+
+	} else {
+		sleep(10);
+		printf("\n\nPID %d foi comprovado zumbi\n", p);
+	}
 
 	return 0;
 
 }
 
-int main(void)
+int main()
 {
     pthread_t thread1, thread2;
 
     pthread_create(&thread1, NULL, printar_ps, 0);
     pthread_create(&thread2, NULL, zombie_maker, 0);
-    
+
     pthread_join(thread1, NULL);
-    pthread_join(thread2, NULL); 
+    pthread_join(thread2, NULL);
 
     return 0;
 }
