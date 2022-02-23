@@ -8,10 +8,11 @@ void* printar_ps()
 {
 	int timer;
 
+	sleep(1);
 	printf("Esperando 10 segundos\n");
 	for (timer = 5; timer > 0; timer--) {
 
-		printf("Tempo restante = %d\n", timer*2);
+		printf("Tempo restante = %d segundos\n", timer*2);
 		printf("----------------------------/----------------------------/----------------------------\n");
 		system("ps -l |grep 'Z'");
 		printf("----------------------------/----------------------------/----------------------------\n");
@@ -30,11 +31,12 @@ void* zombie_maker()
 	p = fork();
 
 	if (p == 0) {
-		printf("\n\n\nPID DO DEFUNTO =  %d\n", getpid());
-		printf("PID DO PAI = %d\n\n\n", getppid());
+		printf("\n\nPID DO DEFUNTO =  %d\n", getpid());
+		printf("PID DO PAI = %d\n\n", getppid());
 
 	} else {
-		sleep(10);
+		// espera 11 segundos pra comprovar que o filho virou zumbi
+		sleep(11);
 		printf("\n\nPID %d foi comprovado zumbi\n", p);
 	}
 
